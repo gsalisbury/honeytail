@@ -33,7 +33,7 @@ type Options struct {
 
 type Parser struct {
 	conf        Options
-	lineParser  LineParser
+	lineParser  parsers.LineParser
 	nower       Nower
 	filterRegex *regexp.Regexp
 
@@ -62,11 +62,6 @@ func (p *Parser) Init(options interface{}) error {
 	p.nower = &RealNower{}
 	p.lineParser = &KeyValLineParser{}
 	return nil
-}
-
-// TODO dedupe the LineParser interface with the json parser or remove entirely
-type LineParser interface {
-	ParseLine(line string) (map[string]interface{}, error)
 }
 
 type KeyValLineParser struct {

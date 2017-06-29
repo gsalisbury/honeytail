@@ -31,7 +31,7 @@ type Options struct {
 
 type Parser struct {
 	conf       Options
-	lineParser LineParser
+	lineParser parsers.LineParser
 	nower      Nower
 
 	warnedAboutTime bool
@@ -53,10 +53,6 @@ func (p *Parser) Init(options interface{}) error {
 	p.nower = &RealNower{}
 	p.lineParser = &JSONLineParser{}
 	return nil
-}
-
-type LineParser interface {
-	ParseLine(line string) (map[string]interface{}, error)
 }
 
 type JSONLineParser struct {

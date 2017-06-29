@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/honeycombio/honeytail/event"
+	"github.com/honeycombio/honeytail/parsers"
 )
 
 const (
@@ -415,7 +416,7 @@ func TestProcessLines(t *testing.T) {
 		},
 		nower: nower,
 	}
-	m.lineParsers = make([]LineParser, m.conf.NumParsers)
+	m.lineParsers = make([]parsers.LineParser, m.conf.NumParsers)
 	for i := 0; i < m.conf.NumParsers; i++ {
 		m.lineParsers[i] = &MongoLineParser{}
 	}
